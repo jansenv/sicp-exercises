@@ -17,4 +17,4 @@
 
 ; (f n) = 2n || 0 if n = 0
 ; (g n) = 2^n || 0 if n = 0
-; (h n) = 
+; (h n) = 2^2^.... (n - 1 times) for n > 1 || 2 if n = 1 || 0 if n = 0
