@@ -3,11 +3,11 @@
 (define (timed-prime-test n)
   (newline)
   (display n)
-  (start-prime-test n (current-milliseconds)))
+  (start-prime-test n (current-inexact-milliseconds)))
 
 (define (start-prime-test n start-time)
   (cond (prime? n)
-      (report-prime (- (current-milliseconds) start-time))))
+      (report-prime (- (current-inexact-milliseconds) start-time))))
 
 (define (report-prime n elapsed-time)
   (newline)
