@@ -18,3 +18,16 @@
     (/ (* 4 k k)
        (- (* 4 k k) 1)))
   (* 2 (product pi-term 1 (lambda (x) (+ x 1)) n)))
+
+;1.32a
+
+(define (accumulate combiner null-value term a next b)
+  (if (> a b)
+      null-value
+      (combiner (term a)
+                (accumulate combiner null-value term (next a) next b))))
+
+(define (inc x) (+ 1 x))
+
+(accumulate + 0 identity 1 inc 10) ;sum nums from 1-10
+(accumulate * 1 identity 1 inc 10) ;multiply nums from 1-10
