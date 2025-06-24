@@ -31,3 +31,26 @@
 
 (accumulate + 0 identity 1 inc 10) ;sum nums from 1-10
 (accumulate * 1 identity 1 inc 10) ;multiply nums from 1-10
+
+;1.33
+
+(define (filtered-accumulate filter combiner null-value term a next b)
+  (cond ((> a b) null-value)
+        ((filter a)
+         (combiner (term a)
+                   (filtered-accumulate filter combiner null-value term (next a) next b)))
+        (else
+         (filtered-accumulate filter combiner null-value term (next a) next b))))
+
+(define (prime? n)
+  (define (has-divisor? a)
+    (cond ((> (* a a) n) #f)
+          ((= (remainder n a) 0) #t)
+          (else (has-divisor? (+ a 1)))))
+  (cond ((< n 2) #f)
+        (else (not (has-divisor? 2)))))
+
+(define (square x) (* x x))
+
+(filtered-accumulate prime? + 0 square 1 inc 10) ;sum prime squares 1-10
+(filtered-accumulate prime? * 0 square i inc n) ;product of all prime integers i < n
