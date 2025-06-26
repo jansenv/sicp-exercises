@@ -62,4 +62,15 @@
 (define (double x)
   (lambda (y) (x (x y))))
 
-(((double (double double)) inc) 5) ; 21?
+(((double (double double)) inc) 5) ;21?
+
+;1.43
+(define (compose f g)
+  (lambda (x) (f (g x))))
+
+((compose square inc) 6)
+
+(define (rptd f g)
+  (compose square square))
+
+((rptd square 2) 5) ;625
