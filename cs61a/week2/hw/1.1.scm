@@ -53,4 +53,13 @@
 (define (square x) (* x x))
 
 (filtered-accumulate prime? + 0 square 1 inc 10) ;sum prime squares 1-10
-(filtered-accumulate prime? * 0 square i inc n) ;product of all prime integers i < n
+;(filtered-accumulate prime? * 0 square i inc n) ;product of all prime integers i < n
+
+;1.40
+;?
+
+;1.41
+(define (double x)
+  (lambda (y) (x (x y))))
+
+(((double (double double)) inc) 5) ; 21?
