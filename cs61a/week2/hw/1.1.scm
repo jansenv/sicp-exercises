@@ -70,7 +70,19 @@
 
 ((compose square inc) 6)
 
-(define (rptd f g)
+(define (repeated f g)
   (compose square square))
 
-((rptd square 2) 5) ;625
+((repeated square 2) 5) ;625
+
+;1.46
+(define (iterative-improve good-enough? improve)
+  (if (good-enough?)
+      (lambda (x) (improve x))
+      (iterative-improve (improve guess x) x)))
+
+(define (improve guess x)
+  (average guess (/ x guess)))
+
+(define (average x y)
+  (/ (+ x y) 2))
