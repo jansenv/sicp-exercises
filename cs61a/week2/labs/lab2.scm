@@ -24,3 +24,7 @@ f
 (((f4)) 3)
 
 ;5
+(define (t f)
+  (lambda (x) (f (f (f x)))))
+
+;6
