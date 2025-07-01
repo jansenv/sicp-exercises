@@ -28,3 +28,8 @@ f
   (lambda (x) (f (f (f x)))))
 
 ;6
+
+;7
+(define (make-tester w)
+  (lambda (x)
+    (equal? x w)))
