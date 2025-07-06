@@ -1,10 +1,14 @@
-#lang racket
+#lang simply-scheme
 
-(define (iter-fast-expt b n)
-  (define (iter N B A)
-    (cond ((= 0 N) A)
-          ((even? N) (iter (/ N 2) (square B) A))
-          (else (iter (- N 1) B (* B A)))))
-  (iter n b 1))
+(define (fast-expt b n)
+  (fast-expt-iter b n 1))
 
-(define (square a) (* a a))
+(define (fast-expt-iter b n a)
+  (cond ((= n 0)
+         a)
+        ((even? n) 
+         (fast-expt-iter (square b) (/ n 2) a))
+        (else 
+         (fast-expt-iter b (- n 1 )(* b a)))))
+
+(define square (lambda (x) (* x x)))
